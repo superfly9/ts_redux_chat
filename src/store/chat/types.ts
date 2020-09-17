@@ -22,6 +22,9 @@ interface SendMessasgeAction {
 interface DeleteMessageAction {
     type: typeof DELETE_MESSAGE
     meta: {
-        timestamp : true
+        timestamp : number
     }
 }
+
+//액션의 타입을 다른 파일에서 쓰기 위해 export
+export type ChatActionTypes = SendMessasgeAction | DeleteMessageAction
