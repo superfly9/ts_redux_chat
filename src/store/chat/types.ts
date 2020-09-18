@@ -13,7 +13,7 @@ export interface ChatState {
 export const SEND_MESSAGE = 'SEND_MESSAGE';
 export const DELETE_MESSAGE = 'DELETE_MESSAGE';
 
-//액션의 타입을 정의
+//Action creator의 return 타입을 정의하는 interface들
 interface SendMessasgeAction {
     type: typeof SEND_MESSAGE
     payload: Message
