@@ -1,6 +1,11 @@
 import React,{useState} from 'react';
 import './App.css';
 
+
+interface props {
+  lang:string
+  toggleLang?:()=>void
+}
 function App() {
   const [lang,setLang] = useState('en');
   const toggleLang = ():void => {
@@ -15,20 +20,20 @@ function App() {
   );
 }
 
-function Button ({lang,toggleLang}:{lang:string,toggleLang:()=>void}){
+function Button ({lang,toggleLang}:props){
   return (
     <button style={{width:'20%'}} onClick={toggleLang}>{lang}</button>
   )
 }
 
-function Title ({lang}:{lang:string}) {
+function Title ({lang}:props) {
   const text = lang==='en' ? 'Context' : '컨텍스트'
   return (
     <h1>{text}</h1>
   )
 }
 
-function Message ({lang}:{lang:string}) {
+function Message ({lang}:props) {
   const renderMessage =():string=>{
     let engContent = `Context provides a way to pass data through the component tree
     without having to pass props down manually at every level`
