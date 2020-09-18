@@ -7,5 +7,7 @@ const rootReducer = combineReducers({
     chat: chatReducer
 })
 export type RootState = ReturnType<typeof rootReducer>
+//{system:SystemState, chat:ChatState} 
+
 //type vs typeof
 //ReturnType의 사용법
