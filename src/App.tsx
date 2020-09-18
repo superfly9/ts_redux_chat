@@ -1,8 +1,12 @@
-import React,{useState} from 'react';
+import React,{useState,useContext,createContext} from 'react';
+import Button from './Button';
+import Message from './Message';
+import Title from './Title';
+import LangContext from './LangContext';
 import './App.css';
 
 
-interface props {
+export interface props {
   lang:string
   toggleLang?:()=>void
 }
@@ -11,41 +15,17 @@ function App() {
   const toggleLang = ():void => {
      lang === 'en' ? setLang('kr') : setLang('en');
     }
+  //1.컨텍스트 생성(createContext) =>  const LangContext = createContext('en');
+  //2.Provider로 하위 컴포넌트에 컨텍스트 제공 => <LangContext.Provider value={}></LangContext.Provider> <-value가 전역데이터가 되었다
   return (
+    <LangContext.Provider value={lang}>
     <div className="App">
       <Title lang={lang} />
       <Message lang={lang} />
       <Button lang={lang} toggleLang={toggleLang} />
     </div>
+    </LangContext.Provider>
   );
-}
-
-function Button ({lang,toggleLang}:props){
-  return (
-    <button style={{width:'20%'}} onClick={toggleLang}>{lang}</button>
-  )
-}
-
-function Title ({lang}:props) {
-  const text = lang==='en' ? 'Context' : '컨텍스트'
-  return (
-    <h1>{text}</h1>
-  )
-}
-
-function Message ({lang}:props) {
-  const renderMessage =():string=>{
-    let engContent = `Context provides a way to pass data through the component tree
-    without having to pass props down manually at every level`
-    let korContent =`컨텍스트는 모든 레벨에서 일일이 props를 넘기지 않고도 컴포넌트 트리에
-    걸쳐서 데이터를 전달할 수 있는 방법을 제공합니다.`
-    let text= lang ==='en' ? engContent : korContent
-    return text
-  }
-
-  return (
-    <p>{renderMessage()}</p>
-  )
 }
 
 export default App;
